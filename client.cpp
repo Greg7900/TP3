@@ -1,52 +1,67 @@
 #include "clients.h"
-#include <iostream>
+
 
 namespace clients {
-    Clients::Clients(std::string firstname, std::string lastname, std::string ID, std::string panier) : _firstname(firstname), _lastname(lastname), _ID(ID), _panier(panier){
+    Clients::Clients(std::string firstname, std::string lastname, std::string ID) : _firstname(firstname), _lastname(lastname), _ID(ID){
     }
 
 
 
 //Getter
-    std::string Clients::Getfirstname() const {
+    std::string Clients::getFirstname() const {
         return _firstname;
     }
 
-    std::string Clients::Getlastname() const {
+    std::string Clients::getLastname() const {
         return _lastname;
     }
 
-    std::string Clients::GetID() const {
+    std::string Clients::getID() const {
         return _ID;
     }
-    std::string display(Clients c) {
+    std::vector<panier::Panier> Clients::getCart()const{
+    	return _cart;
+    }
+
+	std::string display(Clients c) {
     return c.Getfirstname() + " " + c.Getlastname() + " " +c.GetID();
-}
+	}
 
     std::ostream& operator << (std::ostream& os,const Clients &clients) {
         os << clients.Getfirstname() + " " + clients.Getlastname() + " " +clients.GetID() <<std::endl;
-        return os;
+        int i=1;
+        os<< "client cart : \n"<<std::endl;
+  		for (auto number : _cart){
+    	os << number << " "<< std::endl;
+   	 	i++;
+  		}
+  
+  return os;
     }
 
 
 
 //Setter
-	void Clients::Setfirstname(std::string firstname){
+	void Clients::setFirstname(std::string firstname){
 	_firstname = firstname;
 	}
 
-    void Clients::Setlastname(std::string lastname){
+    void Clients::setLastname(std::string lastname){
 	_lastname = lastname;
 	}
 
-	void Clients::SetID(std::string ID){
+	void Clients::setID(std::string ID){
 	_ID = ID;
 	}
-
-bool operator == (const Clients& c1,const Clients& c2) { // check for equality
-        if( (c1.Getfirstname()==c2.Getfirstname()) && (c1.Getlastname()==c2.Getlastname())&& (c1.GetID()==c2.GetID())) {
-            return true;
-        }
-    return false;
-  }
+	void setCart(magasin::Product product){
+    	getcart().pushBack(produit);
+    }
+    void deleteProduct(magasin::Product product){
+    	auto it=findProduct(product,_cart);
+    	if(!it=_panier.end())
+    	{
+    		_panier.erase(it);
+    	}else{std::cout<< " Product not found "<<std::endl;}
+    }
+   
 }
