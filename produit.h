@@ -7,10 +7,10 @@ namespace magasin
 {
 	class Product
 	{
-
-		Product(std::string title, std::string description, int quantity, double price);
+	
 
 	public:
+		Product(std::string title, std::string description, int quantity, double price);
 		std::string title() const;
 		std::string description() const;
 		int quantity()const;
@@ -23,8 +23,8 @@ namespace magasin
 		double _price;
 	};
 	std::ostream &operator<<(std::ostream &os, const Product &product);
-	std::vector<magasin::Product>::iterator findProduct(const magasin::Product &product, std::vector<magasin::Product> &vectorP);
-	std::vector<magasin::Product>::iterator findProduct(const std::string title, std::vector<magasin::Product> &vectorP);
+	std::vector<magasin::Product>::iterator findProduct(const magasin::Product &product, std::vector<magasin::Product>& vectorP);
+	std::vector<magasin::Product>::iterator findProduct(const std::string title, std::vector<magasin::Product>& vectorP);
 }
 
 #endif

@@ -2,9 +2,10 @@
 #define MAGASIN_H
 #include <iostream>
 #include <vector>
-
+#include <algorithm>
 #include "produit.h"
 #include "client.h"
+#include "commande.h"
 
 namespace magasin
 {
@@ -12,17 +13,25 @@ namespace magasin
 	{
 	public : 
 	    Magasin();
-	    void displayProduct();
-	    void addProduct (magasin::Product product);
+	    void addProduct (); // 3a
+	    void displayAllProducts() ; //3b
+	    void displayProduct() ; //3c
+	    void updateProductQuantity(); // 3d
+
+		void addClient(); //5a
+		void displayAllClients(); //5b
+		void displayClients(); //5c
+		void addProductToClient(); //5d
+		void delProductToClient(); //5e
+		void updateProductQuantityToClient();//5f
+		void checkOrder();// 7a
+	    
 	private:
 		
 		std::vector<magasin::Product> _products;
 		std::vector<clients::Clients> _clients;
 		std::vector<magasin::Order> _orders;
 	};
-
-	std::ostream &operator<<(std::ostream &os, const Magasin &magasin);
-
-
+	
 }
 #endif

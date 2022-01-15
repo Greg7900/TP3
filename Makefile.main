@@ -4,9 +4,9 @@ CXX        = g++
 CXXFLAGS   = -Wall -std=c++17
 DEPFLAGS   = -MMD
 LDFLAGS    =
-SRCS       = magasin.cpp produit.cpp main.cpp 
+SRCS       = magasin.cpp produit.cpp main.cpp client.cpp commande.cpp
 OBJS       = $(SRCS:.cpp=.o)
-TARGET     = chambre-test
+TARGET     = main-test
 DEPS	   = $(OBJS:.o=.d)
 
 all: $(TARGET)
