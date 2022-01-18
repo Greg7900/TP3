@@ -1,9 +1,10 @@
 #include "magasin.h"
 
 void magManagement(magasin::Magasin mag ){
-	int choix;
+	std::cout << "\033[2J\033[1;1H"; //clear terminal
+  int choix;
     std::cout<< "---------------------------------------------Store Management ----------------------------------------------"<<std::endl<<std::endl;
-    std::cout<< " Enter an action ! " <<std::endl<<"  Add product : 1"<<std::endl<<" Update product quantity: 2 "<<std::endl<<" displayAllProducts : 3 "<<std::endl<<" display a Products : 4 "<<std::endl;
+    std::cout<< " Enter an action ! " <<std::endl<<" Add product : 1"<<std::endl<<" Update product quantity: 2 "<<std::endl<<" displayAllProducts : 3 "<<std::endl<<" display a Products : 4 "<<std::endl;
     std::cout<< " Display a client : 5 " <<std::endl<< " Display all client : 6 " <<std::endl;
     std::cin>>choix;
     std::cout<< " You have chosen the number "<<choix<<std::endl;
@@ -38,14 +39,14 @@ void magManagement(magasin::Magasin mag ){
 
 int main(int argc, char const *argv[]) {
 
-magasin::Magasin mag;
+
 magasin::Product prod1("WD40","graisse",4,4.97);
 std::cout<<prod1;
-mag.addProduct(prod1);
+magasin::Magasin mag();
 while (1) {
 	int choix;
     std::cout<< "---------------------------------------------Menu---------------------------------------------"<<std::endl<<std::endl;
-    std::cout<< " Enter an action ! " <<std::endl<<"  Store management : 1"<<std::endl<<" Users management: 2 "<<std::endl<<" Orders management : 3 "<<std::endl;
+    std::cout<< " Enter an action ! " <<std::endl<<" Store management : 1"<<std::endl<<" Users management: 2 "<<std::endl<<" Orders management : 3 "<<std::endl;
     
     std::cin>>choix;
     std::cout<< " You have chosen the number "<<choix<<std::endl;

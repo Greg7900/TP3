@@ -7,6 +7,7 @@ namespace magasin{
 	Magasin::Magasin(){}
 	
 	void Magasin::addProduct(){  // 3a
+		std::cout << "\033[2J\033[1;1H"; //clear terminal
 		std::string title,description;
 		int quantity;
 		double price;
@@ -19,13 +20,12 @@ namespace magasin{
       	std::cout<< " Enter product price : " ;
       	std::cin>> price;
       	magasin::Product prod(title,description,quantity,price);
-
-      	
 		_products.push_back(prod);
 	}
 
 	void Magasin::displayAllProducts() { //3b
-		std::cout<< " Enter product price : " ;
+		std::cout << "\033[2J\033[1;1H"; //clear terminal
+		std::cout<< " size : " ;
 		std::cout<<_products.size();
 		
 		for(auto it=_products.begin(); it!=_products.end();it++){
@@ -33,6 +33,7 @@ namespace magasin{
       }
 	}
 	void Magasin::displayProduct() { //3c
+		std::cout << "\033[2J\033[1;1H"; //clear terminal
 		std::string title;
 		std::cout<< " Enter product title : " ;
       	std::cin>> title;
@@ -43,6 +44,7 @@ namespace magasin{
 		}
 	}
 	void Magasin::updateProductQuantity(){ // 3d
+		std::cout << "\033[2J\033[1;1H"; //clear terminal
 		int newQuantity;
 		std::cout<< " Enter product new quantity : " ;
       	std::cin>> newQuantity;
@@ -56,6 +58,7 @@ namespace magasin{
 		}
 	}
 	void Magasin::addClient(){ //5a
+		  std::cout << "\033[2J\033[1;1H"; //clear terminal
 		  std::string nom, prenon, idClient;
 		  std::cout << std::endl;
 		  std::cout<< " Enter Customer firstname : " ;
@@ -68,11 +71,13 @@ namespace magasin{
 		_clients.push_back(client);
 	}
 	void Magasin::displayAllClients(){ //5b
+		std::cout << "\033[2J\033[1;1H"; //clear terminal
 		for(auto it=_clients.begin(); it!=_clients.end();it++){
          std::cout<<*it<<std::endl;
       }
 	} 
 	void Magasin::displayClients() { //5c
+		std::cout << "\033[2J\033[1;1H"; //clear terminal
 		std::string idClient;
       	std::cout<< " Enter Customer ID or name : " ;
       	std::cin>> idClient;
@@ -85,6 +90,7 @@ namespace magasin{
       }
 	}
 	void Magasin::addProductToClient(){ //5d
+		std::cout << "\033[2J\033[1;1H"; //clear terminal
 		std::string idClient;
 		int Quantity,num;
 		int i=1;
@@ -111,6 +117,7 @@ namespace magasin{
       	}
 	}
 	void Magasin::delProductToClient(){ //5e
+		std::cout << "\033[2J\033[1;1H"; //clear terminal
 		std::string idClient,idProduct;
       	std::cout<< " Enter Customer ID or name : " ;
       	std::cin>> idClient;
@@ -125,6 +132,7 @@ namespace magasin{
       	}
 	}
 	void Magasin::updateProductQuantityToClient(){ //5f
+	std::cout << "\033[2J\033[1;1H"; //clear terminal
 	std::string idClient,idProduct;
 	int newQuantity;
   	std::cout<< " Enter Customer ID or name : " ;
