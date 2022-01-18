@@ -1,12 +1,11 @@
 #include "magasin.h"
 
-void magManagement(magasin::Magasin mag ){
+void magManagement(magasin::Magasin& mag ){
 	std::cout << "\033[2J\033[1;1H"; //clear terminal
   int choix;
     std::cout<< "---------------------------------------------Store Management ----------------------------------------------"<<std::endl<<std::endl;
     std::cout<< " Enter an action ! " <<std::endl<<" Add product : 1"<<std::endl<<" Update product quantity: 2 "<<std::endl<<" displayAllProducts : 3 "<<std::endl<<" display a Products : 4 "<<std::endl;
-    std::cout<< " Display a client : 5 " <<std::endl<< " Display all client : 6 " <<std::endl;
-    std::cin>>choix;
+    std::cin>>choix;if(std::cin.fail()) { std::cin.clear(); std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  }
     std::cout<< " You have chosen the number "<<choix<<std::endl;
     switch (choix){
       case 1 :
@@ -21,28 +20,84 @@ void magManagement(magasin::Magasin mag ){
       case 4 :
       mag.displayProduct();
       break;
-      case 5 :
+      default :
+      std::cout<<" action number "<<choix<< " doesn't exist"<<std::endl;
+      break;
+}
+}
+void userManagement(magasin::Magasin& mag ){
+  std::cout << "\033[2J\033[1;1H"; //clear terminal
+  int choix;
+    std::cout<< "---------------------------------------------Store Management ----------------------------------------------"<<std::endl<<std::endl;
+    std::cout<< " Enter an action ! " <<std::endl<<" Add a client : 1"<<std::endl;
+    std::cout<< " Display a client : 2 " <<std::endl<< " Display all client : 3" <<std::endl;
+    std::cout<< " Add a product to the client cart : 4 " <<std::endl<< " Delete a product from the client cart: 5 " <<std::endl;
+     std::cout<< " Update product quantity in a client cart : 6 " <<std::endl;
+    std::cin>>choix;if(std::cin.fail()) { std::cin.clear(); std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  }
+    std::cout<< " You have chosen the number "<<choix<<std::endl;
+    switch (choix){
+      case 1 :
+      mag.addClient();
+      break;
+      case 2 :
       mag.displayClients();
       break;
-      case 6 :
+      case 3 :
       mag.displayAllClients();
       break;
-      case 7 :
+      case 4 :
       mag.addProductToClient();
       break;
+      case 5 : 
+      mag.delProductToClient();
+      break;
+      case 6 :
+      mag.updateProductQuantityToClient();
+      break;
       default :
-      choix=0;
+      std::cout<<" action number "<<choix<< " doesn't exist"<<std::endl;
       break;
 }
 }
-
+void orderManagement(magasin::Magasin& mag ){
+  std::cout << "\033[2J\033[1;1H"; //clear terminal
+  int choix;
+    std::cout<< "---------------------------------------------Store Management ----------------------------------------------"<<std::endl<<std::endl;
+    std::cout<< " Enter an action ! " <<std::endl<<" Add a client : 1"<<std::endl;
+    std::cout<< " Display a client : 2 " <<std::endl<< " Display all client : 4 " <<std::endl;
+    std::cout<< " Add a product to the client cart : 5 " <<std::endl<< " Delete a product from the client cart: 6 " <<std::endl;
+     std::cout<< " Update product quantity in a client cart : 9 " <<std::endl;
+    std::cin>>choix;if(std::cin.fail()) { std::cin.clear(); std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  }
+    std::cout<< " You have chosen the number "<<choix<<std::endl;
+    switch (choix){
+      case 1 :
+      mag.addClient();
+      break;
+      case 2 :
+      mag.displayClients();
+      break;
+      case 3 :
+      mag.displayAllClients();
+      break;
+      case 4 :
+      mag.addProductToClient();
+      break;
+      case 5 : 
+      mag.delProductToClient();
+      break;
+      case 6 :
+      mag.updateProductQuantityToClient();
+      break;
+      default :
+      std::cout<<" action number "<<choix<< " doesn't exist"<<std::endl;
+      break;
+}
+}
 
 int main(int argc, char const *argv[]) {
 
 
-magasin::Product prod1("WD40","graisse",4,4.97);
-std::cout<<prod1;
-magasin::Magasin mag();
+magasin::Magasin mag;
 while (1) {
 	int choix;
     std::cout<< "---------------------------------------------Menu---------------------------------------------"<<std::endl<<std::endl;
@@ -55,10 +110,10 @@ while (1) {
       magManagement(mag);
       break;
       case 2 :
-      
+      userManagement(mag);
       break;
       case 3 :
-     
+      orderManagement(mag);
       break;
       
       default :

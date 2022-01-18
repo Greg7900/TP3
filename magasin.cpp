@@ -24,10 +24,8 @@ namespace magasin{
 	}
 
 	void Magasin::displayAllProducts() { //3b
-		std::cout << "\033[2J\033[1;1H"; //clear terminal
-		std::cout<< " size : " ;
-		std::cout<<_products.size();
-		
+		std::cout << "\033[2J\033[1;1H"; //clear terminal2
+
 		for(auto it=_products.begin(); it!=_products.end();it++){
          std::cout<<*it<<std::endl;
       }
@@ -78,16 +76,21 @@ namespace magasin{
 	} 
 	void Magasin::displayClients() { //5c
 		std::cout << "\033[2J\033[1;1H"; //clear terminal
+		int flag=1;
 		std::string idClient;
       	std::cout<< " Enter Customer ID or name : " ;
       	std::cin>> idClient;
       	for(auto it=_clients.begin();it!=_clients.end();it++){
-        if((*it).getID()==idClient){
+        if( (*it).getID()==idClient ){
+          flag=0;
           std::cout<<(*it);
         }else if((*it).getLastname()==idClient){
+          flag=0;
           std::cout<<(*it);
          }
-      }
+      }if(flag==1){
+			std::cout <<"product not found";
+      	}
 	}
 	void Magasin::addProductToClient(){ //5d
 		std::cout << "\033[2J\033[1;1H"; //clear terminal
@@ -100,9 +103,15 @@ namespace magasin{
     	std::cout<< number << " "<< std::endl;
     	i++;
   		}
+  		std::cout<< "-----------------------------------------------------------------------------------------------------------------"<<std::endl;
+
   		std::cout<< " Choose a product number : ";
   		std::cin>> num;
-  		magasin::Product prod = _products.at(num);
+  		if(!( (num>=1) && (num <=i) )){
+  			std::cout<< " the product doesn't exist' "<<std::endl;
+  			std::cin>> num;
+  		}
+  		magasin::Product prod = _products.at(num-1);
   		std::cout<< "--------------------------------------------------------Fin--------------------------------------------------------"<<std::endl;
       	std::cout<< " Enter Customer ID or name : " ;
       	std::cin>> idClient;
@@ -118,6 +127,7 @@ namespace magasin{
 	}
 	void Magasin::delProductToClient(){ //5e
 		std::cout << "\033[2J\033[1;1H"; //clear terminal
+		int flag=1;
 		std::string idClient,idProduct;
       	std::cout<< " Enter Customer ID or name : " ;
       	std::cin>> idClient;
@@ -125,10 +135,16 @@ namespace magasin{
       	std::cin>> idProduct;
       	for(auto it=_clients.begin();it!=_clients.end();it++){
 	        if((*it).getID()==idClient){
+	          flag=0;
 	          (*it).deleteCartProduct(idProduct);
+	          std::cout<<"product deleted successfully";
 	        }else if((*it).getLastname()==idClient){
+	          flag=0;
 	          (*it).deleteCartProduct(idProduct);
+	          std::cout<<"product deleted successfully";
 	         }
+      	}if(flag==1){
+			std::cout <<"product not found";
       	}
 	}
 	void Magasin::updateProductQuantityToClient(){ //5f
@@ -152,7 +168,33 @@ namespace magasin{
   	
 	}
 	void Magasin::checkOrder(){ //7a
-
+		std::string idClient;
+		int flag=1;
+      	std::cout<< " Enter Customer ID or name to check : " ;
+      	std::cin>> idClient;
+      	for(auto it=_clients.begin();it!=_clients.end();it++){
+	        if(  ( (*it).getID()==idClient ) ){
+	          	flag=0;
+	          	for(long unsigned int i=1 ; i<=((*it).getCart()).size();i++){
+	          			auto test= (*it).getCart();
+	          			auto it1=magasin::findProduct(,_products);
+			  			if(it1 !=_products.end()){
+			     			if((*it1).quantity()<=test.quantity()){
+			     				magasin::order order((*it),(*it).getCart(),"ok");
+			     			}else{
+			     				std::cout<< "quantity not available";
+			     			}
+						}
+				}
+			}else if((*it).getLastname()==idClient){
+	          flag=0;
+	          (*it).
+	         }
+      	}
+      }
+      	if(flag==1){
+			std::cout <<"product not found";
+      	}
   	}
 
 
