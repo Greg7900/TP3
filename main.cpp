@@ -9,7 +9,7 @@ void magManagement(magasin::Magasin mag ){
     std::cout<< " You have chosen the number "<<choix<<std::endl;
     switch (choix){
       case 1 :
-      mag.addClient();
+      mag.addProduct();
       break;
       case 2 :
       mag.updateProductQuantity();
@@ -40,6 +40,8 @@ int main(int argc, char const *argv[]) {
 
 magasin::Magasin mag;
 magasin::Product prod1("WD40","graisse",4,4.97);
+std::cout<<prod1;
+mag.addProduct(prod1);
 while (1) {
 	int choix;
     std::cout<< "---------------------------------------------Menu---------------------------------------------"<<std::endl<<std::endl;

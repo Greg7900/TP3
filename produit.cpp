@@ -19,7 +19,7 @@ namespace magasin{
 	}
 	
 	std::ostream& operator<<(std::ostream& os, const Product& product){
-		os<<"Title of product is : " + product.title()  + "/n Description of the product : "+product.description() + "/n Quantity of the product : " + std::to_string(product.quantity()) +"/n Price of the product : " + std::to_string(product.price()) + "/n";
+		os<<"Title of product is : " + product.title()  + "\n Description of the product : "+product.description() + "\n Quantity of the product : " + std::to_string(product.quantity()) +"\n Price of the product : " + std::to_string(product.price()) + "\n";
 	return os;
 	}
 		std::vector<magasin::Product>::iterator findProduct(const magasin::Product& product, std::vector<magasin::Product>& vectorP )

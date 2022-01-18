@@ -19,9 +19,11 @@ namespace magasin{
       	std::cout<< " Enter product price : " ;
       	std::cin>> price;
       	magasin::Product prod(title,description,quantity,price);
+
       	
 		_products.push_back(prod);
 	}
+
 	void Magasin::displayAllProducts() { //3b
 		std::cout<< " Enter product price : " ;
 		std::cout<<_products.size();

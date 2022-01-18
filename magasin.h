@@ -13,6 +13,7 @@ namespace magasin
 	{
 	public : 
 	    Magasin();
+	    void addProduct(magasin::Product prod);
 	    void addProduct (); // 3a
 	    void displayAllProducts() ; //3b
 	    void displayProduct() ; //3c
