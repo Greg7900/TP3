@@ -1,52 +1,110 @@
-#include "clients.h"
-#include <iostream>
+#include "client.h"
+
+
 
 namespace clients {
-    Clients::Clients(std::string firstname, std::string lastname, std::string ID, std::string panier) : _firstname(firstname), _lastname(lastname), _ID(ID), _panier(panier){
+    Clients::Clients(std::string firstname, std::string lastname, std::string ID) : _firstname(firstname), _lastname(lastname), _ID(ID){
     }
 
 
 
 //Getter
-    std::string Clients::Getfirstname() const {
+    std::string Clients::getFirstname() const {
         return _firstname;
     }
 
-    std::string Clients::Getlastname() const {
+    std::string Clients::getLastname() const {
         return _lastname;
     }
 
-    std::string Clients::GetID() const {
+    std::string Clients::getID() const {
         return _ID;
     }
-    std::string display(Clients c) {
-    return c.Getfirstname() + " " + c.Getlastname() + " " +c.GetID();
-}
+    std::vector<magasin::Product>Clients::getCart() const{
+    	return _cart;
+    }
 
-    std::ostream& operator << (std::ostream& os,const Clients &clients) {
-        os << clients.Getfirstname() + " " + clients.Getlastname() + " " +clients.GetID() <<std::endl;
+//Setter
+    void Clients::setFirstname(std::string firstname){
+       _firstname = firstname;
+   }
+
+   void Clients::setLastname(std::string lastname){
+       _lastname = lastname;
+   }
+
+   void Clients::setID(std::string ID){
+       _ID = ID;
+   }
+
+
+	void Clients::setCart(magasin::Product product,int Quantity){  // 4b
+
+        auto quantMax=product.quantity();
+        product.setQuantity(Quantity);
+        auto it=magasin::findProduct(product.title(),_cart); // si le produit est deja dans le panier on additionne les quantités
+        if(it !=_cart.end()){
+            (*it)=(*it)+product;
+            if(((*it).quantity()>quantMax)){
+                std::cout << "Quantity max exceeded, the product quantity will be set as quantity max\n";
+                (*it).setQuantity(quantMax);
+            }
+
+        }else{
+            _cart.push_back(product);
+        }
+
+        
+    }
+    void Clients::clearCart(){ //4c
+        _cart.clear();
+    }
+    
+    void Clients::updateClientProductQuantity(int newQuantity,std::string title, int quantMax){ // 4d
+
+        auto it=findProduct(title,_cart);
+        if(it!=_cart.end())
+        {
+          if(newQuantity<=quantMax){
+              (*it).setQuantity(newQuantity); 
+          }else{
+            std::cout<< " Quantity unchanged because of availability \n";
+        }
+    }else{std::cout<< " Product not found in client cart \n"<<std::endl;
+}
+} 
+
+
+    void Clients::deleteCartProduct(std::string idProduct){  // 4e
+
+        auto it=findProduct(idProduct,_cart);
+        if(it!=_cart.end())
+        {
+          _cart.erase(it);
+      }else{std::cout<< " Product not found "<<std::endl;}
+  }
+  void displayCart( Clients &clients){
+    std::cout << "-------------------------------------------Client cart-----------------------------------------------\n\n";
+    for (auto number : clients.getCart()){
+        std::cout << number << " "<< std::endl;
+    }std::cout << "-----------------------------------------------------------------------------------------------------\n\n";
+
+}
+    std::ostream& operator << (std::ostream& os,const Clients &clients) { // 4f
+
+        os << "--> Firstname : "+ clients.getFirstname() + " | Lastname : " + clients.getLastname() + " | ID : " +clients.getID() +"\n" ;
+        os<< " Client cart : \n"<<std::endl;
+        for (auto number : clients.getCart()){
+            os << number << " "<< std::endl;
+        }
+
         return os;
+    }
+    std::vector<clients::Clients>::iterator findClient( const std::string idClient, std::vector<clients::Clients>& vectorC)
+    {
+        auto it = std::find_if(vectorC.begin(),vectorC.end(),[idClient](const clients::Clients& client) {return idClient==(client.getID());});
+        return it; 
     }
 
 
-
-//Setter
-	void Clients::Setfirstname(std::string firstname){
-	_firstname = firstname;
-	}
-
-    void Clients::Setlastname(std::string lastname){
-	_lastname = lastname;
-	}
-
-	void Clients::SetID(std::string ID){
-	_ID = ID;
-	}
-
-bool operator == (const Clients& c1,const Clients& c2) { // check for equality
-        if( (c1.Getfirstname()==c2.Getfirstname()) && (c1.Getlastname()==c2.Getlastname())&& (c1.GetID()==c2.GetID())) {
-            return true;
-        }
-    return false;
-  }
 }
