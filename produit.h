@@ -22,6 +22,8 @@ namespace magasin
 		int _quantity;
 		double _price;
 	};
+	magasin::Product operator + ( magasin::Product& product,  magasin::Product& product1);
+	magasin::Product operator - ( magasin::Product& product,  magasin::Product& product1);
 	std::ostream &operator<<(std::ostream &os, const Product &product);
 	std::vector<magasin::Product>::iterator findProduct(const magasin::Product &product, std::vector<magasin::Product>& vectorP);
 	std::vector<magasin::Product>::iterator findProduct(const std::string title, std::vector<magasin::Product>& vectorP);

@@ -15,13 +15,15 @@ namespace magasin
 		clients::Clients client();
 		std::vector<magasin::Product> cart();
 		std::string status();
+		void updateStatus();
 
 	private:
 		clients::Clients _client1;
 		std::vector<magasin::Product> _cart;
 		
-		std::string _status;
+		std::string _status= "waiting";
 	};
-	std::ostream &operator<<(std::ostream &os,  Order& order);
+	void changeStatus(Order& order);
+	std::ostream &operator<<(std::ostream &os,   Order& order);
 }
 #endif

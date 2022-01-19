@@ -25,6 +25,9 @@ namespace magasin
 		void delProductToClient(); //5e
 		void updateProductQuantityToClient();//5f
 		void checkOrder();// 7a
+		
+		void displayAllOrders(); //7c
+		void displayClientOrders();//7d
 	    
 	private:
 		
@@ -32,6 +35,6 @@ namespace magasin
 		std::vector<clients::Clients> _clients;
 		std::vector<magasin::Order> _orders;
 	};
-	
+	void status(); //7b
 }
 #endif

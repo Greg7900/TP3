@@ -1,7 +1,6 @@
 #ifndef CLIENTS_H
 #define CLIENTS_H
-#include <iostream>
-#include <vector>
+
 #include "produit.h"
 namespace clients
 {
@@ -21,7 +20,7 @@ namespace clients
 		void setID(std::string ID);
 		void setCart(magasin::Product product,int Quantity); //4b
 		void clearCart(); //4c
-		void updateClientProductQuantity(int newQuantity,std::string title);// 4d
+		void updateClientProductQuantity(int newQuantity,std::string title,int quantMax);// 4d
 		void deleteCartProduct(std::string idProduct); //4e
 
 	private:
@@ -30,8 +29,9 @@ namespace clients
 		std::string _ID;
 		std::vector<magasin::Product> _cart;
 	};
-	
+	void displayCart( Clients &clients);
 	std::ostream &operator<<(std::ostream &os, const Clients &clients);
-	
+std::vector<clients::Clients>::iterator findClient(const  std::string idClient, std::vector<clients::Clients>& vectorC);
+
 }
 #endif

@@ -17,9 +17,16 @@ namespace magasin{
 	void Product::setQuantity(int value){
 		_quantity = value;
 	}
-	
+	magasin::Product operator + ( magasin::Product& product,  magasin::Product& product1) {
+		product.setQuantity(product.quantity() + product1.quantity());
+		return product;
+	}
+	magasin::Product operator - ( magasin::Product& product,  magasin::Product& product1) {
+		product.setQuantity(product.quantity() - product1.quantity());
+		return product;
+	}
 	std::ostream& operator<<(std::ostream& os, const Product& product){
-		os<<" Title : " + product.title()  + "\n Description : "+product.description() + "\n Quantity : " + std::to_string(product.quantity()) +"\n Price 3: " + std::to_string(product.price()) + "\n";
+		os<<" Title : " + product.title()  + "\n Description : "+product.description() + "\n Quantity : " + std::to_string(product.quantity()) +"\n Price : " + std::to_string(product.price()) + "\n";
 	return os;
 	}
 		std::vector<magasin::Product>::iterator findProduct(const magasin::Product& product, std::vector<magasin::Product>& vectorP )
