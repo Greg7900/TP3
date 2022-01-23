@@ -37,7 +37,7 @@ namespace magasin
 		std::vector<magasin::Order> _orders;
 	};
 	void status(); //7b
-	std::ostream& operator<<(std::ostream& os,std::vector<magasin::Product>& prodV );
+	
 
 }
 #endif
