@@ -25,10 +25,10 @@ namespace magasin{
 
 	void Magasin::displayAllProducts() { //3b
 		std::cout << "\033[2J\033[1;1H"; //clear terminal2
-		std::cout<< "------------------------------------------------Liste des produits---------------------------------------------"<<std::endl;
+		std::cout<< "------------------------------------------------Liste des produits---------------------------------------------\n";
 		for(auto it=_products.begin(); it!=_products.end();it++){
 			std::cout<<*it<<std::endl;
-		}  std::cout<< "-----------------------------------------------------------------------------------------------------------------"<<std::endl;
+		}  std::cout<< "-----------------------------------------------------------------------------------------------------------------\n";
 
 	}
 	void Magasin::displayProduct() { //3c
@@ -98,7 +98,7 @@ namespace magasin{
 		std::cout<< "------------------------------------------------Liste des produits----------------------------------------------\n";
 		for (auto number : _products){
 			std::cout<< "Produit numero "<<i<<": \n";
-			std::cout<< number << " "<< std::endl;
+			std::cout<< number << " \n";
 			i++;
 		}
 		std::cout<< "-----------------------------------------------------------------------------------------------------------------\n";
@@ -206,6 +206,7 @@ namespace magasin{
 						flag=1;
 						std::cout << "\033[2J\033[1;1H"; //clear terminal
 						std::cout<< " Order has been validate and added \n";
+
 					}
 				}if(flag==0){  // si flag=0, if(it1!=cart.end()) non validité. j'utulise un flag pour éviter l'affichage en double
 				std::cout << "\033[2J\033[1;1H"; //clear terminal;
@@ -247,5 +248,15 @@ namespace magasin{
 		}
 	}  
 
+	std::vector<magasin::Order> Magasin::getOrders()const{
+		return _orders;
+	}
+	
+	std::vector<magasin::Product> Magasin::getProducs()const{
+		return _products;
+	}
+	std::vector<clients::Clients> Magasin::getClients()const{
+		return _clients;
+	}
 
 }
