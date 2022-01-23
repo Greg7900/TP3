@@ -1,5 +1,6 @@
 #include "magasin.h"
 
+#include <iterator>
 void magManagement(magasin::Magasin& mag ){
 	std::cout << "\033[2J\033[1;1H"; //clear terminal
   int choix;
@@ -66,7 +67,7 @@ void orderManagement(magasin::Magasin& mag ){
     std::cout<< " You have chosen the number "<<choix<<"\n\n";
     switch (choix){
       case 1 :
-      mag.checkOrder();
+      mag.checkOrder();      
       break;
       case 2 :
       mag.displayAllOrders();
@@ -85,6 +86,7 @@ int main(int argc, char const *argv[]) {
 
 magasin::Magasin mag;
 while (1) {
+ 
 	int choix;
     std::cout<< "---------------------------------------------Menu--------------------------------------------- \n\n";
     std::cout<< " Enter an action ! \n" <<"   Store management : 1 \n"<<"   Users management : 2 \n"<<"   Orders management : 3 \n\n";

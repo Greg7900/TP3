@@ -29,6 +29,7 @@ namespace magasin{
 		os<<" Title : " + product.title()  + "\n Description : "+product.description() + "\n Quantity : " + std::to_string(product.quantity()) +"\n Price : " + std::to_string(product.price()) + "\n";
 	return os;
 	}
+	
 		std::vector<magasin::Product>::iterator findProduct(const magasin::Product& product, std::vector<magasin::Product>& vectorP )
 	    {
 	    	auto it = std::find_if(vectorP.begin(),vectorP.end(),[product](const magasin::Product& prod) {return product.title()==prod.title();});

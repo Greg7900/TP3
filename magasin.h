@@ -17,7 +17,6 @@ namespace magasin
 	    void displayAllProducts() ; //3b
 	    void displayProduct() ; //3c
 	    void updateProductQuantity(); // 3d
-
 		void addClient(); //5a
 		void displayAllClients(); //5b
 		void displayClients(); //5c
@@ -25,10 +24,12 @@ namespace magasin
 		void delProductToClient(); //5e
 		void updateProductQuantityToClient();//5f
 		void checkOrder();// 7a
-		
 		void displayAllOrders(); //7c
 		void displayClientOrders();//7d
-	    
+	    std::vector<magasin::Order> getOrders()const;
+	    std::vector<magasin::Product> getProducs()const;
+		std::vector<clients::Clients> getClients()const;
+		
 	private:
 		
 		std::vector<magasin::Product> _products;
@@ -36,5 +37,7 @@ namespace magasin
 		std::vector<magasin::Order> _orders;
 	};
 	void status(); //7b
+	std::ostream& operator<<(std::ostream& os,std::vector<magasin::Product>& prodV );
+
 }
 #endif
