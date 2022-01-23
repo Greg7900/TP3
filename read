@@ -1,12 +1,1 @@
-std::vector<magasin::Product>::iterator findProduct(const magasin::Product& product, std::vector<magasin::Product>& cart )
-    {
-    	auto it=std::find_if(cart.begin(),cart.end(),[product](const magasin::Product& prod) {return product.titre()==(prod.titre());});
-    	return it; 
-    }
-    
-    
-std::vector<magasin::Product>::iterator  findProduct(const std::string titre, std::vector<magasin::Product>& cart )
-    {
-    	auto it=std::find_if(cart.begin(),cart.end(),[titre](const magasin::Product& prod) {return titre==(prod.titre());});
-    	return it; 
-    }
+CECI EST UN TP SCOLAIRE 
