@@ -26,6 +26,7 @@ namespace magasin
 		void checkOrder();// 7a
 		void displayAllOrders(); //7c
 		void displayClientOrders();//7d
+		
 	    std::vector<magasin::Order> getOrders()const;
 	    std::vector<magasin::Product> getProducs()const;
 		std::vector<clients::Clients> getClients()const;
